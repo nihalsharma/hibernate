@@ -9,6 +9,7 @@ import com.tm.midclient.json.pojo.WidgetType;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Nihal on 9/16/14.
@@ -128,7 +129,20 @@ public class ParseJson {
         return null;
     }
 
+    public Map<Integer, String> getCompanyWidgetsMap(String json){
+        try {
+            if (json != null || json != "") {
+                Gson gson = new Gson();
+                Type token = new TypeToken<Map<Integer, String>>() {
+                }.getType();
+                Map<Integer, String> result = gson.fromJson(json, token);
+                return result;
+            }
+        } catch (Exception e) {
 
+        }
+        return null;
+    }
 
 
 }
