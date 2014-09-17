@@ -1,0 +1,29 @@
+# Created by .gitignore support plugin (hsz.mobi)
+# Ignore following directories
+target/*
+target/**/*
+.idea/*
+.idea/**/*
+bin/*
+bin/**/*
+build/*
+build/**/*
+txtfiles/*
+txtfiles/**/*
+out/*
+out/**/*
+.gradle/*
+.gradle/*/**
+.gradle/
+.settings/
+
+# Ignore following files
+*.iml
+*.iws
+*.ipr
+*.class
+*.orig
+*.swp
+.project
+.classpath
+.elasticbeanstalk/
