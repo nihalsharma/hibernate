@@ -1,4 +1,4 @@
-package com.tm.midclient.json.pojo;
+package com.tm.mid.client.pojo;
 
 /**
  * Created by BigP on 9/16/14.

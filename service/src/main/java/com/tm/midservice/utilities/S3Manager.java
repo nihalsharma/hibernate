@@ -3,14 +3,19 @@ package com.tm.midservice.utilities;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.ObjectListing;
+import com.amazonaws.services.s3.model.Bucket;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.log4j.Logger;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
- * Created by BigP on 9/14/14.
+ * Created by BigP on 9/17/14.
  */
 public class S3Manager {
+
 
     private static final Logger LOGGER = Logger.getLogger(S3Manager.class);
 
@@ -38,27 +43,24 @@ public class S3Manager {
         return instance;
     }
 
-    public ObjectListing getListObjects(String path) {
-        /*String bucket = S3Util.getBucket(path);
-        String bucketPath = S3Util.getPath(path);
-        try {
-            return service.listObjects(new ListObjectsRequest().withBucketName(bucket).withPrefix(bucketPath));
-        } catch (Exception e) {
-            LOGGER.error("Error finding path: " + path + " in bucket: " + bucket);
-        }*/
-        return null;
+    private boolean doesBucketExist(String pathName){
+        return service.doesBucketExist(pathName);
     }
 
-    public void deletePathIfExists(String path) {
-        /*ObjectListing summaries = getListObjects(path);
-        if (summaries != null) {
-            for (S3ObjectSummary summary : summaries.getObjectSummaries()) {
-                try {
-                    service.deleteObject(summary.getBucketName(), summary.getKey());
-                } catch (Exception e) {
-                    LOGGER.error("Error deleting path: " + summary.getKey() + " in bucket: " + summary.getBucketName());
-                }
+    public int createNewBucket(){
+        Date date = new Date();
+        DateFormat format = new SimpleDateFormat("yy/MM/dd");
+        String dateString = format.format(date);
+        String mid = dateString.replace("/", "");
+        Integer intMid = Integer.parseInt(mid);
+        while(true){
+            if(doesBucketExist(intMid.toString())){
+                intMid ++;
+            } else {
+                Bucket bucket = service.createBucket(intMid.toString());
+                break;
             }
-        }*/
+        }
+        return intMid;
     }
 }

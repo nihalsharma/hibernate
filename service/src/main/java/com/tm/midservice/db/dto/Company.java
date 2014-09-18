@@ -55,12 +55,6 @@ public class Company implements Serializable {
     @Column(name = "source_domain")
     private String sourceDomain;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//    private User user;
-
-    private int user_id;
-
     @Column(name = "tier_id")
     private int tierId;
 
@@ -168,24 +162,7 @@ public class Company implements Serializable {
         this.sourceDomain = sourceDomain;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public int getTieId() {
+    public int getTierId() {
         return tierId;
     }
 

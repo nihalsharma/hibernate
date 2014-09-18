@@ -38,6 +38,7 @@
         <mapping class="com.tm.midservice.db.dto.Tier"/>
         <mapping class="com.tm.midservice.db.dto.WidgetType"/>
         <mapping class="com.tm.midservice.db.dto.CompanyCategoryMap"/>
+        <mapping class="com.tm.midservice.db.dto.TMWRSClient"/>
 
     </session-factory>
 </hibernate-configuration>

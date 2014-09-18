@@ -3,8 +3,8 @@ package com.tm.midservice;
 import com.google.gson.Gson;
 import com.tm.midservice.db.dto.Company;
 import com.tm.midservice.db.dto.User;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+//import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+//import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.junit.Test;
 
 import javax.ws.rs.client.Invocation;
@@ -27,18 +27,18 @@ public class AuthorizationTest {
     @Test
     public void testAPIAuth() throws IOException {
 
-        ResteasyClient client =  new ResteasyClientBuilder().build();
-        //client.register(new AuthorizationRequestFilter());
-        WebTarget resourceTarget = client.target("http://localhost:8081/api/get/testAPI");
-        Invocation invocation = resourceTarget.request("text/plain")
-                .header("tmauthorize", "ac").buildGet();
-
-        // Invoke the request using generic interface
-        Response response = resourceTarget.request().get();
-        String value = response.readEntity(String.class);
-        System.out.println(value);
-        System.out.println("nnihal");
-        assertEquals("", "");
+//        ResteasyClient client =  new ResteasyClientBuilder().build();
+//        //client.register(new AuthorizationRequestFilter());
+//        WebTarget resourceTarget = client.target("http://localhost:8081/api/get/testAPI");
+//        Invocation invocation = resourceTarget.request("text/plain")
+//                .header("tmauthorize", "ac").buildGet();
+//
+//        // Invoke the request using generic interface
+//        Response response = resourceTarget.request().get();
+//        String value = response.readEntity(String.class);
+//        System.out.println(value);
+//        System.out.println("nnihal");
+//        assertEquals("", "");
 
 
 

@@ -15,7 +15,6 @@ public class TMMIDException extends RuntimeException {
 
     public TMMIDException(String message, Throwable cause) {
         super(message, cause);
-
     }
 
     public TMMIDException(Throwable cause) {

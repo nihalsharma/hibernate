@@ -1,30 +1,15 @@
-package com.tm.midservice.db.dto;
-
-import javax.persistence.*;
+package com.tm.mid.client.pojo;
 
 /**
  * Created by BigP on 9/16/14.
  */
-@Entity
-@Table(name = "company_category_mapping")
 public class CompanyCategoryMap {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", unique = true, nullable = false)
     private Integer id;
-
-    @Column(name = "mid", nullable = false)
     private int mid;
-
-    @Column(name = "category_key")
     private String catKey;
-
-    @Column(name = "category_value")
     private String catValue;
-
-    @Column(name = "priority")
-    private Double priority;
+    private int priority;
 
     public Integer getId() {
         return id;
@@ -58,11 +43,11 @@ public class CompanyCategoryMap {
         this.catValue = catValue;
     }
 
-    public Double getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(Double priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 

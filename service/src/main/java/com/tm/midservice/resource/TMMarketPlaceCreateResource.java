@@ -1,18 +1,24 @@
 package com.tm.midservice.resource;
 
 import com.google.gson.Gson;
-import com.tm.midservice.S3.S3Manager;
+import com.tm.midservice.utilities.Constants;
+import com.tm.midservice.utilities.S3Manager;
 import com.tm.midservice.db.dto.Company;
 import com.tm.midservice.db.dto.CompanyCategoryMap;
+import com.tm.midservice.db.dto.TMWRSClient;
 import com.tm.midservice.db.dto.User;
 import com.tm.midservice.db.impl.BaseDaoImpl;
+import com.tm.midservice.db.impl.CompanyDaoImpl;
 import com.tm.midservice.db.service.BaseDao;
+import com.tm.midservice.db.service.CompanyDao;
 import com.tm.midservice.exception.TMMIDException;
 import org.apache.log4j.Logger;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import java.util.List;
 
 /**
  * Created by Nihal on 9/14/14.
@@ -22,27 +28,53 @@ public class TMMarketPlaceCreateResource {
 
     private static final Logger LOGGER = Logger.getLogger(TMMarketPlaceCreateResource.class);
     private static BaseDao baseDao;
+    private static CompanyDao companyDao;
 
     public TMMarketPlaceCreateResource() {
         baseDao = new BaseDaoImpl();
+        companyDao = new CompanyDaoImpl();
     }
 
     @POST
     @Path("/company")
     @Produces("application/json")
-    public String createCompany(String companyJson){
+    public String createCompany(String companyJson) {
         boolean created = Boolean.FALSE;
         Gson gson = new Gson();
-        try{
+        try {
             Company company = new Gson().fromJson(companyJson, Company.class);
             //create S3 Bucket
             int mid = S3Manager.getInstance().createNewBucket();
             company.setMid(mid);
-            if(company != null){
+            if (company != null) {
                 baseDao.save(company);
             }
             created = Boolean.TRUE;
-        } catch (Exception e){
+        } catch (Exception e) {
+            throw new TMMIDException(e.getMessage());
+        }
+        String json = gson.toJson(created);
+        return json;
+    }
+
+
+    @POST
+    @Path("/user")
+    @Produces("application/json")
+    public String createTMWRSClient(String tmwrsClientJson) {
+        boolean created = Boolean.FALSE;
+        Gson gson = new Gson();
+        try {
+            TMWRSClient client = new Gson().fromJson(tmwrsClientJson, TMWRSClient.class);
+            if (client != null) {
+                Company company = companyDao.getCompanyByMID(client.getMid());
+                if (company != null) {
+                    return gson.toJson(created);
+                }
+                baseDao.save(client);
+            }
+            created = Boolean.TRUE;
+        } catch (Exception e) {
             throw new TMMIDException(e.getMessage());
         }
         String json = gson.toJson(created);
@@ -52,16 +84,16 @@ public class TMMarketPlaceCreateResource {
     @POST
     @Path("/user")
     @Produces("application/json")
-    public String createUser(String userJson){
+    public String createUser(String userJson) {
         boolean created = Boolean.FALSE;
         User user = new Gson().fromJson(userJson, User.class);
         Gson gson = new Gson();
-        try{
-            if(user != null){
+        try {
+            if (user != null) {
                 baseDao.save(user);
             }
             created = Boolean.TRUE;
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new TMMIDException(e.getMessage());
         }
         String json = gson.toJson(created);
@@ -71,20 +103,62 @@ public class TMMarketPlaceCreateResource {
     @POST
     @Path("/companyCategoryMap")
     @Produces("application/json")
-    public String createCompanyCategoryMap(String companyCatJson){
+    public String createCompanyCategoryMap(String companyCatJson) {
         boolean created = Boolean.FALSE;
         Gson gson = new Gson();
         CompanyCategoryMap companyCatMap = new Gson().fromJson(companyCatJson, CompanyCategoryMap.class);
-        try{
-            if(companyCatMap != null){
+        try {
+            if (companyCatMap != null) {
                 baseDao.save(companyCatMap);
             }
             created = Boolean.TRUE;
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new TMMIDException(e.getMessage());
         }
         String json = gson.toJson(created);
         return json;
     }
+
+
+    @GET
+    @Path("/allCompanyCategoryMap")
+    @Produces("application/json")
+    public String createAllCompanyCategoryMap() {
+        boolean created = Boolean.FALSE;
+        Gson gson = new Gson();
+        List<CompanyCategoryMap> companyCatMap = Constants.createcategoryMap();
+        try {
+            if (companyCatMap != null) {
+                baseDao.saveAll(companyCatMap);
+            }
+            created = Boolean.TRUE;
+        } catch (Exception e) {
+            throw new TMMIDException(e.getMessage());
+        }
+        String json = gson.toJson(created);
+        return json;
+    }
+
+    @GET
+    @Path("/allTMWRSClient")
+    @Produces("application/json")
+    public String createAllTMWRSClient() {
+        boolean created = Boolean.FALSE;
+        Gson gson = new Gson();
+        List<TMWRSClient> companyCatMap = Constants.tmwrsClients();
+        try {
+            if (companyCatMap != null) {
+                baseDao.saveAll(companyCatMap);
+            }
+            created = Boolean.TRUE;
+        } catch (Exception e) {
+            throw new TMMIDException(e.getMessage());
+        }
+        String json = gson.toJson(created);
+        return json;
+    }
+
+
+
 
 }

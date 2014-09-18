@@ -1,4 +1,6 @@
-package com.tm.midclient.json.pojo;
+package com.tm.mid.client.pojo;
+
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,8 +14,13 @@ public class Company implements Serializable{
     private String name;
     private Integer usersCount;
     private Integer mid;
+
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date createdAt;
+
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date updatedAt;
+
     private boolean active;
     private boolean searchFeatureEnabled;
     private boolean analyticsFeatureEnabled;
@@ -21,6 +28,7 @@ public class Company implements Serializable{
     private String domain;
     private String source;
     private String sourceDomain;
+    private int tierId;
 
     public Integer getId() {
         return id;
@@ -124,5 +132,13 @@ public class Company implements Serializable{
 
     public void setSourceDomain(String sourceDomain) {
         this.sourceDomain = sourceDomain;
+    }
+
+    public int getTierId() {
+        return tierId;
+    }
+
+    public void setTierId(int tierId) {
+        this.tierId = tierId;
     }
 }

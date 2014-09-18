@@ -1,4 +1,6 @@
-package com.tm.midclient.json.pojo;
+package com.tm.mid.client.pojo;
+
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 import java.util.Date;
 
@@ -25,13 +27,29 @@ public class User {
     private boolean superAdmin;
     private boolean termsAccept;
     private Integer signInCount;
+
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date resetPasswordSentAt;
+
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date rememberCreatedAt;
+
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date currentSignInAt;
+
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date lastSignInAt;
+
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date confirmedAt;
+
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date confirmationSentAt;
+
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date createdAt;
+
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date updatedAt;
 
     public Integer getId() {

@@ -2,6 +2,7 @@ package com.tm.midservice.db.service;
 
 import com.tm.midservice.db.dto.Company;
 import com.tm.midservice.db.dto.CompanyCategoryMap;
+import com.tm.midservice.db.dto.TMWRSClient;
 
 import java.util.List;
 
@@ -21,4 +22,12 @@ public interface CompanyDao extends BaseDao{
     public List<CompanyCategoryMap> getCompanyCategoryMapByMid(int intId);
 
     public List<CompanyCategoryMap> getAllCompanyCategoryMap();
+
+
+
+    /** Calls for Class TMWRSClient goes here**/
+
+    public TMWRSClient getTMWRSClientByMid(int id);
+
+    public List<TMWRSClient> getAllTMWRSClients();
 }

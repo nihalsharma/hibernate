@@ -87,6 +87,5 @@ public class DataBaseManager {
         return retBool;
     }
 
-
 }
 
