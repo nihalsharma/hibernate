@@ -9,11 +9,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.tm</groupId>
-    <artifactId>jsonparseclient</artifactId>
+    <groupId>com.tm.mid</groupId>
+    <artifactId>client</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>Custom json parser</name>
+    <name>MarketPlaceId Service Java Client</name>
 
     <dependencies>
         <dependency>

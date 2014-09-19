@@ -1,14 +1,20 @@
 package com.tm.mid.client.pojo;
 
+import com.tm.mid.client.json.CustomJsonDateDeserializer;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by BigP on 9/16/14.
+ * Created by Nihal on 9/16/14.
+ * <p/>
+ * <p/>
+ * <p/>
+ * This class is the mapping class of Company class in the MID Service. ALl the field are mapped with the same
+ * name. Any changes to the class in service should be implemented here also.
  */
-public class Company implements Serializable{
+public class Company implements Serializable {
 
     private Integer id;
     private String name;
@@ -141,4 +147,17 @@ public class Company implements Serializable{
     public void setTierId(int tierId) {
         this.tierId = tierId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Company company = (Company) o;
+
+        if (!id.equals(company.id) || !mid.equals(company.mid)) return false;
+
+        return true;
+    }
+
 }

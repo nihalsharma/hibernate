@@ -1,8 +1,9 @@
 package com.tm.mid.client.service;
 
-import com.tm.mid.client.exception.TMMIDClassConversionException;
+import com.tm.mid.client.exception.TMMIDConversionException;
 import com.tm.mid.client.exception.TMMIDServiceInaccessible;
 import com.tm.mid.client.pojo.*;
+import com.tm.mid.client.utils.ClientUtil;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -24,16 +25,18 @@ public class MarketPlaceGetterClient {
 
     private final ResteasyClient client;
     private final String baseUrl;
+    private final ClientUtil clientUtil;
 
     public MarketPlaceGetterClient(String url) {
         baseUrl = url;
         client = new ResteasyClientBuilder().build();
+        clientUtil = new ClientUtil();
     }
 
     public Company getCompanyByMid(int mid) {
         try {
             String result = getResponseString(baseUrl + "get/companyByMid/" + mid);
-            Company company = getObjectFromJson(Company.class, result);
+            Company company = clientUtil.getObjectFromJson(Company.class, result);
             return company;
         } catch (Exception e) {
 
@@ -44,7 +47,7 @@ public class MarketPlaceGetterClient {
     public Company getCompanyById(int mid) {
         try {
             String result = getResponseString(baseUrl + "get/companyById/" + mid);
-            Company company = getObjectFromJson(Company.class, result);
+            Company company = clientUtil.getObjectFromJson(Company.class, result);
             return company;
         } catch (Exception e) {
 
@@ -55,7 +58,7 @@ public class MarketPlaceGetterClient {
     public User getUserById(int id) {
         try {
             String result = getResponseString(baseUrl + "get/userById/" + id);
-            User user = getObjectFromJson(User.class, result);
+            User user = clientUtil.getObjectFromJson(User.class, result);
             return user;
         } catch (Exception e) {
 
@@ -66,7 +69,7 @@ public class MarketPlaceGetterClient {
     public int getCompanyCount() {
         try {
             String result = getResponseString(baseUrl + "get/companyCount");
-            int user = getObjectFromJson(Integer.class, result);
+            int user = clientUtil.getObjectFromJson(Integer.class, result);
             return user;
         } catch (Exception e) {
 
@@ -77,7 +80,7 @@ public class MarketPlaceGetterClient {
     public int getUserCount() {
         try {
             String result = getResponseString(baseUrl + "get/userCount");
-            int user = getObjectFromJson(Integer.class, result);
+            int user = clientUtil.getObjectFromJson(Integer.class, result);
             return user;
         } catch (Exception e) {
 
@@ -88,7 +91,7 @@ public class MarketPlaceGetterClient {
     public HashMap<Integer, String> getAllWhiteListedCompanies() {
         try {
             String result = getResponseString(baseUrl + "get/whiteListedCompanies");
-            HashMap<Integer, String> companies = getMapFromJson(result);
+            HashMap<Integer, String> companies = clientUtil.getMapFromJson(result);
             return companies;
         } catch (Exception e) {
 
@@ -100,7 +103,7 @@ public class MarketPlaceGetterClient {
     public List<WidgetType> getAllWidgets() {
         try {
             String result = getResponseString(baseUrl + "get/allWidgets");
-            List<WidgetType> widgets = getListFromJson(WidgetType.class, result);
+            List<WidgetType> widgets = clientUtil.getListFromJson(WidgetType.class, result);
             return widgets;
         } catch (Exception e) {
 
@@ -111,7 +114,7 @@ public class MarketPlaceGetterClient {
     public WidgetType getWidgetById(int wid) {
         try {
             String result = getResponseString(baseUrl + "get/widgetById" + wid);
-            WidgetType widgetType = getObjectFromJson(WidgetType.class, result);
+            WidgetType widgetType = clientUtil.getObjectFromJson(WidgetType.class, result);
             return widgetType;
         } catch (Exception e) {
 
@@ -122,7 +125,7 @@ public class MarketPlaceGetterClient {
     public List<WidgetType> getWidgetsForCompany(int mid) {
         try {
             String result = getResponseString(baseUrl + "get/widgetByCompany" + mid);
-            List<WidgetType> widgets = getListFromJson(WidgetType.class, result);
+            List<WidgetType> widgets = clientUtil.getListFromJson(WidgetType.class, result);
             return widgets;
         } catch (Exception e) {
 
@@ -134,7 +137,7 @@ public class MarketPlaceGetterClient {
     public List<Company> getCompanyListByUserId(int uid) {
         try {
             String result = getResponseString(baseUrl + "get/companyByUserId" + uid);
-            List<Company> companies = getListFromJson(Company.class, result);
+            List<Company> companies = clientUtil.getListFromJson(Company.class, result);
             return companies;
         } catch (Exception e) {
 
@@ -145,7 +148,7 @@ public class MarketPlaceGetterClient {
     public List<CompanyCategoryMap> getCompanyCategoryMapMid(int mid) {
         try {
             String result = getResponseString(baseUrl + "get/companyCategoryMap" + mid);
-            List<CompanyCategoryMap> categoryMapList = getListFromJson(CompanyCategoryMap.class, result);
+            List<CompanyCategoryMap> categoryMapList = clientUtil.getListFromJson(CompanyCategoryMap.class, result);
             return categoryMapList;
         } catch (Exception e) {
 
@@ -156,7 +159,7 @@ public class MarketPlaceGetterClient {
     public List<CompanyCategoryMap> getAllCompanyCategoryMap() {
         try {
             String result = getResponseString(baseUrl + "get/allCompanyCategoryMap");
-            List<CompanyCategoryMap> categoryMapList = getListFromJson(CompanyCategoryMap.class, result);
+            List<CompanyCategoryMap> categoryMapList = clientUtil.getListFromJson(CompanyCategoryMap.class, result);
             return categoryMapList;
         } catch (Exception e) {
 
@@ -167,7 +170,7 @@ public class MarketPlaceGetterClient {
     public List<TMWRSClient> allTMWRSClients() {
         try {
             String result = getResponseString(baseUrl + "get/allTMWRSClients");
-            List<TMWRSClient> tmwrsClients = getListFromJson(TMWRSClient.class, result);
+            List<TMWRSClient> tmwrsClients = clientUtil.getListFromJson(TMWRSClient.class, result);
             return tmwrsClients;
         } catch (Exception e) {
 
@@ -178,7 +181,7 @@ public class MarketPlaceGetterClient {
     public TMWRSClient getTMWRSClientByMid(int mid) {
         try {
             String result = getResponseString(baseUrl + "get/tmwrsClientByMID/" + mid);
-            TMWRSClient client = getObjectFromJson(TMWRSClient.class, result);
+            TMWRSClient client = clientUtil.getObjectFromJson(TMWRSClient.class, result);
             return client;
         } catch (Exception e) {
 
@@ -192,45 +195,10 @@ public class MarketPlaceGetterClient {
             Response response = target.request().get();
             return response.readEntity(String.class);
         } catch (Exception e) {
-            throw new TMMIDServiceInaccessible(e.getCause(), e.getMessage());
+            throw new TMMIDServiceInaccessible(e.getMessage(), e.getCause());
         }
     }
 
-    protected <T> T getObjectFromJson(Class<T> c, String json) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            T object = mapper.readValue(json, c);
-            return object;
-        } catch (JsonGenerationException e) {
-           throw new TMMIDClassConversionException(e.getCause(), e.getMessage());
-        } catch (JsonMappingException e) {
-            throw new TMMIDClassConversionException(e.getCause(), e.getMessage());
-        } catch (IOException e) {
-            throw new TMMIDClassConversionException(e.getCause(), e.getMessage());
-        }
-    }
-
-    protected <T> List<T> getListFromJson(Class<T> c, String json) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            List<T> myObjects = mapper.readValue(json, new TypeReference<List<T>>() {
-            });
-            return myObjects;
-        } catch (Exception e) {
-            throw new TMMIDClassConversionException(e.getCause(), e.getMessage());
-        }
-    }
-
-    private <T1, T2> HashMap<T1, T2> getMapFromJson(String json) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            HashMap<T1, T2> map = mapper.readValue(json, new TypeReference<HashMap<T1, T2>>() {
-            });
-            return map;
-        } catch (Exception e) {
-            throw new TMMIDClassConversionException(e.getCause(), e.getMessage());
-        }
-    }
-
+    
 
 }

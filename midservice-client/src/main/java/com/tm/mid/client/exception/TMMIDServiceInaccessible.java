@@ -5,7 +5,7 @@ package com.tm.mid.client.exception;
  */
 public class TMMIDServiceInaccessible extends RuntimeException {
 
-    public TMMIDServiceInaccessible(Throwable cause, String message) {
+    public TMMIDServiceInaccessible(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -13,6 +13,4 @@ public class TMMIDServiceInaccessible extends RuntimeException {
         super(message);
     }
 
-    public TMMIDServiceInaccessible() {
-    }
 }

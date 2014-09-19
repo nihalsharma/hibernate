@@ -1,8 +1,9 @@
 package com.tm.mid.client.service;
 
-import com.tm.mid.client.exception.TMMIDClassConversionException;
+import com.tm.mid.client.exception.TMMIDConversionException;
 import com.tm.mid.client.pojo.Company;
 import com.tm.mid.client.pojo.CompanyCategoryMap;
+import com.tm.mid.client.utils.ClientUtil;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -13,6 +14,12 @@ import java.util.List;
  */
 
 public class TMMIDServiceClientTest {
+
+    private ClientUtil clientUtil;
+
+    public TMMIDServiceClientTest() {
+        clientUtil  =new ClientUtil();
+    }
 
     @Test
     public void getCompany(){
@@ -40,22 +47,22 @@ public class TMMIDServiceClientTest {
 
     //Generic Object conversion Test
 
-    @Test(expected = TMMIDClassConversionException.class)
+    @Test(expected = TMMIDConversionException.class)
     public void convertCompanyWithException(){
         MarketPlaceGetterClient getterService = new MarketPlaceGetterClient("");
-        CompanyCategoryMap company = getterService.getObjectFromJson(CompanyCategoryMap.class, "{\"id\":6,\"name\":\"abc\",\"usersCount\":10,\"mid\":3,\"createdAt\":\"2014-09-15 19:02 PM IST\",\"updatedAt\":\"2014-09-15 19:02 PM IST\",\"active\":true,\"searchFeatureEnabled\":true,\"analyticsFeatureEnabled\":false,\"currency\":\"abc\",\"domain\":null,\"source\":\"unknown\",\"sourceDomain\":null,\"tierId\":1}");
+        CompanyCategoryMap company = clientUtil.getObjectFromJson(CompanyCategoryMap.class, "{\"id\":6,\"name\":\"abc\",\"usersCount\":10,\"mid\":3,\"createdAt\":\"2014-09-15 19:02 PM IST\",\"updatedAt\":\"2014-09-15 19:02 PM IST\",\"active\":true,\"searchFeatureEnabled\":true,\"analyticsFeatureEnabled\":false,\"currency\":\"abc\",\"domain\":null,\"source\":\"unknown\",\"sourceDomain\":null,\"tierId\":1}");
     }
 
     @Test
     public void convertCompanyWithActualJson(){
         MarketPlaceGetterClient getterService = new MarketPlaceGetterClient("");
-        Company company = getterService.getObjectFromJson(Company.class, "{\"id\":6,\"name\":\"abc\",\"usersCount\":10,\"mid\":3,\"createdAt\":\"2014-09-15 19:02 PM IST\",\"updatedAt\":\"2014-09-15 19:02 PM IST\",\"active\":true,\"searchFeatureEnabled\":true,\"analyticsFeatureEnabled\":false,\"currency\":\"abc\",\"domain\":null,\"source\":\"unknown\",\"sourceDomain\":null,\"tierId\":1}");
+        Company company = clientUtil.getObjectFromJson(Company.class, "{\"id\":6,\"name\":\"abc\",\"usersCount\":10,\"mid\":3,\"createdAt\":\"2014-09-15 19:02 PM IST\",\"updatedAt\":\"2014-09-15 19:02 PM IST\",\"active\":true,\"searchFeatureEnabled\":true,\"analyticsFeatureEnabled\":false,\"currency\":\"abc\",\"domain\":null,\"source\":\"unknown\",\"sourceDomain\":null,\"tierId\":1}");
     }
 
-    @Test(expected = TMMIDClassConversionException.class)
+    @Test(expected = TMMIDConversionException.class)
     public void convertCompanyWithWrongJson(){
         MarketPlaceGetterClient getterService = new MarketPlaceGetterClient("");
-        Company company = getterService.getObjectFromJson(Company.class, "{\"id\":6,\"name\":\"abc\",\"usersCount\":10,\"mid\":3,\"createdAt\":\"2014-09-15 19:02 PM IST\",\"updatedAt\":\"2014-09-15 19:02 PM IST\",\"active\":true,\"searchFeatureEnabled\":true,\"analyticsFeatureEnabled\":false,\"currency\":\"abc\",\"domain\":null,\"source\":\"unknown\",\"sourceDomain\":null,\"tierId\":1}");
+        Company company = clientUtil.getObjectFromJson(Company.class, "{\"id\":6,\"name\":\"abc\",\"usersCount\":10,\"mid\":3,\"createdAt\":\"2014-09-15 19:02 PM IST\",\"updatedAt\":\"2014-09-15 19:02 PM IST\",\"active\":true,\"searchFeatureEnabled\":true,\"analyticsFeatureEnabled\":false,\"currency\":\"abc\",\"domain\":null,\"source\":\"unknown\",\"sourceDomain\":null,\"tierId\":1}");
     }
 
 

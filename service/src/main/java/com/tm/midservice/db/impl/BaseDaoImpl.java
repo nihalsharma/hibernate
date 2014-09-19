@@ -139,11 +139,11 @@ public class BaseDaoImpl implements BaseDao {
     }
 
     protected Session startOperation() throws HibernateException {
-        if(HibernateUtil.getSessionFactory().getCurrentSession() != null && HibernateUtil.getSessionFactory().getCurrentSession().isOpen()){
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
-        } else {
-            session = HibernateUtil.getSessionFactory().openSession();
+        if(HibernateUtil.getSessionFactory().getCurrentSession() != null && HibernateUtil.getSessionFactory().getCurrentSession().isOpen()) {
+            //session = HibernateUtil.getSessionFactory().getCurrentSession();
+            HibernateUtil.getSessionFactory().getCurrentSession().close();
         }
+        session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();
         return session;
     }

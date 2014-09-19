@@ -1,7 +1,11 @@
 package com.tm.mid.client.pojo;
 
+
 /**
- * Created by BigP on 9/16/14.
+ * Created by Nihal on 9/16/14.
+ * <p/>
+ * This class is the mapping class of CompanyCategoryMap class in the MID Service. ALl the field are mapped
+ * with the same name. Any changes to the class in service should be implemented here also.
  */
 public class CompanyCategoryMap {
 
@@ -61,4 +65,21 @@ public class CompanyCategoryMap {
                 ", priority=" + priority +
                 '}' + "\n" ;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CompanyCategoryMap that = (CompanyCategoryMap) o;
+
+        if (mid != that.mid) return false;
+        if (priority != that.priority) return false;
+        if (!catKey.equals(that.catKey)) return false;
+        if (!catValue.equals(that.catValue)) return false;
+        if (!id.equals(that.id)) return false;
+
+        return true;
+    }
+
 }

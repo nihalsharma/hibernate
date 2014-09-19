@@ -1,5 +1,6 @@
 package com.tm.mid.client.pojo;
 
+import com.tm.mid.client.json.CustomJsonDateDeserializer;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 import java.util.Date;

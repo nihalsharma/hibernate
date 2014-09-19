@@ -1,4 +1,4 @@
-package com.tm.mid.client.pojo;
+package com.tm.mid.client.json;
 
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonProcessingException;
