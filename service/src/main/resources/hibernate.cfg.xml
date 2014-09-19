@@ -7,20 +7,18 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/tmdb</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password"></property>
+        <property name="connection.url">jdbc:mysql://aa1x98pqwgz8cp3.ct8rjljyzync.us-east-1.rds.amazonaws.com:3306/tmmarketplacedb</property>
+        <property name="connection.username">tmdb</property>
+        <property name="connection.password">Develop666!</property>
 
-        <!-- JDBC connection pool (use the built-in) -->
+
         <property name="connection.pool_size">1</property>
-        <!-- SQL dialect -->
         <property name="dialect">com.tm.midservice.db.core.Mysql5BitBooleanDialect</property>
         <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>
         <!-- Disable the second-level cache  -->
         <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 
-        <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">validate</property>
         <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>

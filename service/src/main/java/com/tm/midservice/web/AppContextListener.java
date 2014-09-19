@@ -19,8 +19,6 @@ public class AppContextListener implements ServletContextListener {
 
         ServletContext ctx = servletContextEvent.getServletContext();
         LOGGER.debug("***************************Creating Database Connection*********************");
-        //Connection connection = DataBaseManager.getConnection();
-        //ctx.setAttribute("DBConnection", connection);
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         ctx.setAttribute("sessionFactory", sessionFactory);

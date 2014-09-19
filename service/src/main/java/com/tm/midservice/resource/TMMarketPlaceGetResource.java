@@ -1,6 +1,5 @@
 package com.tm.midservice.resource;
 
-import com.google.gson.Gson;
 import com.tm.midservice.db.constants.EnumTierType;
 import com.tm.midservice.db.constants.EnumWidgetType;
 import com.tm.midservice.db.dto.User;
@@ -12,7 +11,6 @@ import com.tm.midservice.db.dto.*;
 import com.tm.midservice.db.service.CompanyDao;
 import com.tm.midservice.db.service.UserDao;
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.ws.rs.GET;

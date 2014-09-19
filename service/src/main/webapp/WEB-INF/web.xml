@@ -10,13 +10,6 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-    <!--<listener>-->
-        <!--<display-name>Startup</display-name>-->
-        <!--<listener-class>-->
-            <!--com.tm.midservice.web.TMMIDServiceStartUpListener-->
-        <!--</listener-class>-->
-    <!--</listener>-->
-
     <listener>
         <listener-class>
             org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
@@ -33,7 +26,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>tmmidservice</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
 
     <listener>
@@ -42,8 +35,9 @@
             com.tm.midservice.web.AppContextListener
         </listener-class>
     </listener>
+
     <context-param>
-        <param-name>com.tm.com.tm.midservice.service.scan</param-name>
+        <param-name>resteasy.scan</param-name>
         <param-value>true</param-value>
     </context-param>
 
