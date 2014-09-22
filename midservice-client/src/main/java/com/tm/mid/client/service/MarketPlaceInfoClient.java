@@ -36,7 +36,7 @@ public interface MarketPlaceInfoClient {
 
     public List<CompanyCategoryMap> getAllCompanyCategoryMap()  throws TMMIDConversionException, TMMIDServiceInaccessible;
 
-    public List<CompanyAttributes> allTMWRSClients()  throws TMMIDConversionException, TMMIDServiceInaccessible;
+    public List<CompanyAttributes> allCompanyAttributes()  throws TMMIDConversionException, TMMIDServiceInaccessible;
 
-    public CompanyAttributes getTMWRSClientByMid(int mid)  throws TMMIDConversionException, TMMIDServiceInaccessible;
+    public CompanyAttributes getCompanyAttributesByMid(int mid)  throws TMMIDConversionException, TMMIDServiceInaccessible;
 }

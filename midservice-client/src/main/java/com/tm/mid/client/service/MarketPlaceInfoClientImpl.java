@@ -114,14 +114,14 @@ public class MarketPlaceInfoClientImpl implements MarketPlaceInfoClient {
     }
 
     @Override
-    public List<CompanyAttributes> allTMWRSClients() throws TMMIDServiceInaccessible, TMMIDConversionException {
+    public List<CompanyAttributes> allCompanyAttributes() throws TMMIDServiceInaccessible, TMMIDConversionException {
         String result = WebUtil.getResponseString(baseUrl + "get/all-company-attributes", this.client);
         List<CompanyAttributes> companyAttribues = jsonUtil.getListFromJson(CompanyAttributes.class, result);
         return companyAttribues;
     }
 
     @Override
-    public CompanyAttributes getTMWRSClientByMid(int mid) throws TMMIDServiceInaccessible, TMMIDConversionException {
+    public CompanyAttributes getCompanyAttributesByMid(int mid) throws TMMIDServiceInaccessible, TMMIDConversionException {
         String result = WebUtil.getResponseString(baseUrl + "get/company-attributes-by-mid/" + mid, this.client);
         CompanyAttributes client = jsonUtil.getObjectFromJson(CompanyAttributes.class, result);
         return client;
