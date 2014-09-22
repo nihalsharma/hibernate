@@ -22,6 +22,21 @@ public class JSONUtilTest {
         jsonUtil = new JSONUtil();
     }
 
+
+    @Test
+    public void getCompanyByMid() throws TMMIDConversionException, TMMIDServiceInaccessible {
+        MarketPlaceInfoClient getterService = new MarketPlaceInfoClientImpl("http://localhost:8081/api/");
+        Company company = getterService.getCompanyByMid(3);
+        org.junit.Assert.assertEquals(company.getMid().intValue(), 3);
+    }
+
+    @Test
+    public void getAllWhiteListedCompaniesList() throws TMMIDConversionException, TMMIDServiceInaccessible {
+        MarketPlaceInfoClient getterService = new MarketPlaceInfoClientImpl("http://localhost:8081/api/");
+        List<Integer> company = getterService.getAllWhiteListedCompanies();
+        org.junit.Assert.assertEquals(company.size(), 3);
+    }
+
     @Test
     public void getCompanyList() throws TMMIDConversionException, TMMIDServiceInaccessible {
         MarketPlaceInfoClient getterService = new MarketPlaceInfoClientImpl("http://localhost:8081/api/");

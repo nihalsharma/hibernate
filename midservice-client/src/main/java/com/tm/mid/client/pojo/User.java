@@ -2,7 +2,8 @@ package com.tm.mid.client.pojo;
 
 import com.tm.mid.client.json.CustomJsonDateDeserializer;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.joda.time.DateTime;
+
+import java.util.Date;
 
 
 /**
@@ -30,28 +31,28 @@ public class User {
     private Integer signInCount;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    private DateTime resetPasswordSentAt;
+    private Date resetPasswordSentAt;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    private DateTime rememberCreatedAt;
+    private Date rememberCreatedAt;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    private DateTime currentSignInAt;
+    private Date currentSignInAt;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    private DateTime lastSignInAt;
+    private Date lastSignInAt;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    private DateTime confirmedAt;
+    private Date confirmedAt;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    private DateTime confirmationSentAt;
+    private Date confirmationSentAt;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    private DateTime createdAt;
+    private Date createdAt;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    private DateTime updatedAt;
+    private Date updatedAt;
 
     public Integer getId() {
         return id;
@@ -197,67 +198,67 @@ public class User {
         this.signInCount = signInCount;
     }
 
-    public DateTime getResetPasswordSentAt() {
+    public Date getResetPasswordSentAt() {
         return resetPasswordSentAt;
     }
 
-    public void setResetPasswordSentAt(DateTime resetPasswordSentAt) {
+    public void setResetPasswordSentAt(Date resetPasswordSentAt) {
         this.resetPasswordSentAt = resetPasswordSentAt;
     }
 
-    public DateTime getRememberCreatedAt() {
+    public Date getRememberCreatedAt() {
         return rememberCreatedAt;
     }
 
-    public void setRememberCreatedAt(DateTime rememberCreatedAt) {
+    public void setRememberCreatedAt(Date rememberCreatedAt) {
         this.rememberCreatedAt = rememberCreatedAt;
     }
 
-    public DateTime getCurrentSignInAt() {
+    public Date getCurrentSignInAt() {
         return currentSignInAt;
     }
 
-    public void setCurrentSignInAt(DateTime currentSignInAt) {
+    public void setCurrentSignInAt(Date currentSignInAt) {
         this.currentSignInAt = currentSignInAt;
     }
 
-    public DateTime getLastSignInAt() {
+    public Date getLastSignInAt() {
         return lastSignInAt;
     }
 
-    public void setLastSignInAt(DateTime lastSignInAt) {
+    public void setLastSignInAt(Date lastSignInAt) {
         this.lastSignInAt = lastSignInAt;
     }
 
-    public DateTime getConfirmedAt() {
+    public Date getConfirmedAt() {
         return confirmedAt;
     }
 
-    public void setConfirmedAt(DateTime confirmedAt) {
+    public void setConfirmedAt(Date confirmedAt) {
         this.confirmedAt = confirmedAt;
     }
 
-    public DateTime getConfirmationSentAt() {
+    public Date getConfirmationSentAt() {
         return confirmationSentAt;
     }
 
-    public void setConfirmationSentAt(DateTime confirmationSentAt) {
+    public void setConfirmationSentAt(Date confirmationSentAt) {
         this.confirmationSentAt = confirmationSentAt;
     }
 
-    public DateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(DateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public DateTime getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(DateTime updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 }
