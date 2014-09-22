@@ -1,6 +1,6 @@
 package com.tm.midservice.db.core;
 
-import com.tm.midservice.exception.TMMIDException;
+import com.tm.midservice.exception.TMMarketPlaceDatabaseException;
 import org.apache.log4j.Logger;
 import org.hibernate.*;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -21,7 +21,7 @@ public class HibernateUtil {
             sessionFactory = new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("SessionFactory initial creation error." + ex);
-            throw new TMMIDException(ex.getMessage());
+            throw new TMMarketPlaceDatabaseException(ex.getMessage());
         }
     }
 

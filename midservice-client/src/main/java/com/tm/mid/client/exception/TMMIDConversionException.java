@@ -3,7 +3,7 @@ package com.tm.mid.client.exception;
 /**
  * Created by Nihal on 9/17/14.
  */
-public class TMMIDConversionException extends RuntimeException {
+public class TMMIDConversionException extends Exception {
 
     public TMMIDConversionException(String message, Throwable cause) {
         super(message, cause);
@@ -13,6 +13,4 @@ public class TMMIDConversionException extends RuntimeException {
         super(message);
     }
 
-    public TMMIDConversionException() {
-    }
 }

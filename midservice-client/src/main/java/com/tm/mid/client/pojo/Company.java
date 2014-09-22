@@ -2,6 +2,7 @@ package com.tm.mid.client.pojo;
 
 import com.tm.mid.client.json.CustomJsonDateDeserializer;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.joda.time.DateTime;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -22,10 +23,10 @@ public class Company implements Serializable {
     private Integer mid;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    private Date createdAt;
+    private DateTime createdAt;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    private Date updatedAt;
+    private DateTime updatedAt;
 
     private boolean active;
     private boolean searchFeatureEnabled;
@@ -68,19 +69,19 @@ public class Company implements Serializable {
         this.mid = mid;
     }
 
-    public Date getCreatedAt() {
+    public DateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(DateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public DateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(DateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 

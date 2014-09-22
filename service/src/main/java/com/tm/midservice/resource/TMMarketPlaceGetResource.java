@@ -10,6 +10,7 @@ import com.tm.midservice.db.service.BaseDao;
 import com.tm.midservice.db.dto.*;
 import com.tm.midservice.db.service.CompanyDao;
 import com.tm.midservice.db.service.UserDao;
+import com.tm.midservice.exception.TMMarketPlaceServiceException;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -48,16 +49,16 @@ public class TMMarketPlaceGetResource {
     }
 
     @GET
-    @Path("/testAPI")
+    @Path("/test-api")
     @Produces("application/json")
     public String testService(){
         return "I am healthy !!!";
     }
 
     @GET
-    @Path("/companyById/{id}")
+    @Path("/company-by-id/{id}")
     @Produces("application/json")
-    public String getCompanyById(@PathParam("id") String id){
+    public String getCompanyById(@PathParam("id") String id) throws TMMarketPlaceServiceException {
         
         int intId = Integer.parseInt(id);
         Company company = baseDao.get(Company.class, intId);
@@ -66,14 +67,13 @@ public class TMMarketPlaceGetResource {
             LOGGER.debug("Returning JSON from method: getCompanyByMid - " + json);
             return json;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new  TMMarketPlaceServiceException(e, e.getMessage());
         }
-        return null;
     }
 
 
     @GET
-    @Path("/companyByMid/{mid}")
+    @Path("/company-by-mid/{mid}")
     @Produces("application/json")
     public String getCompanyByMid(@PathParam("mid") String mid) throws IOException {
         int intId = Integer.parseInt(mid);
@@ -84,41 +84,41 @@ public class TMMarketPlaceGetResource {
     }
 
     @GET
-    @Path("/tmwrsClientByMID/{mid}")
+    @Path("/company-attributes-by-mid/{mid}")
     @Produces("application/json")
-    public String getTMWRSClientByMid(@PathParam("mid") String id){
+    public String getTMWRSClientByMid(@PathParam("mid") String id) throws TMMarketPlaceServiceException {
         
         int intId = Integer.parseInt(id);
-        TMWRSClient tmwrsClient = companyDao.getTMWRSClientByMid(intId);
+        CompanyAttributes companyAttributes = companyDao.getCompanyAttributesByMid(intId);
         String json = null;
         try {
-            json = mapper.writeValueAsString(tmwrsClient);
+            json = mapper.writeValueAsString(companyAttributes);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new  TMMarketPlaceServiceException(e, e.getMessage());
         }
         LOGGER.debug("Returning JSON from method: getCompanyByMid - " + json);
         return json;
     }
 
     @GET
-    @Path("/allTMWRSClients")
+    @Path("/all-company-attributes")
     @Produces("application/json")
-    public String getAllTMWRSClients(){
-        List<TMWRSClient> tmwrsClient = companyDao.getAllTMWRSClients();
+    public String getAllTMWRSClients() throws TMMarketPlaceServiceException {
+        List<CompanyAttributes> companyAttributes = companyDao.getAllCompanyAttributes();
         String json = null;
         try {
-            json = mapper.writeValueAsString(tmwrsClient);
+            json = mapper.writeValueAsString(companyAttributes);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new  TMMarketPlaceServiceException(e, e.getMessage());
         }
         LOGGER.debug("Returning JSON from method: getCompanyByMid - " + json);
         return json;
     }
 
     @GET
-    @Path("/companyBySize/{start}/{size}")
+    @Path("/company-by-size/{start}/{size}")
     @Produces("application/json")
-    public String getCompanyByMid(@PathParam("start") String start, @PathParam("size") String size){
+    public String getCompanyByMid(@PathParam("start") String start, @PathParam("size") String size) throws TMMarketPlaceServiceException {
         try {
             int startValue = Integer.parseInt(start);
             int endValue = Integer.parseInt(size);
@@ -128,15 +128,14 @@ public class TMMarketPlaceGetResource {
 
             return json;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new  TMMarketPlaceServiceException(e, e.getMessage());
         }
-        return null;
     }
 
     @GET
-    @Path("/userBySize/{start}/{size}")
+    @Path("/user-by-size/{start}/{size}")
     @Produces("application/json")
-    public String getUserByMid(@PathParam("start") String start, @PathParam("size") String size){
+    public String getUserByMid(@PathParam("start") String start, @PathParam("size") String size) throws TMMarketPlaceServiceException {
         String json = null;
         try {
             int startValue = Integer.parseInt(start);
@@ -146,15 +145,14 @@ public class TMMarketPlaceGetResource {
             LOGGER.debug("Returning JSON from method: getUserByMid - " + json);
             return json;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new  TMMarketPlaceServiceException(e, e.getMessage());
         }
-        return json;
     }
 
     @GET
-    @Path("/userById/{id}")
+    @Path("/user-by-id/{id}")
     @Produces("application/json")
-    public String getUserById(@PathParam("id") String id){
+    public String getUserById(@PathParam("id") String id) throws TMMarketPlaceServiceException {
         String json = null;
         try {
             int intId = Integer.parseInt(id);
@@ -162,16 +160,14 @@ public class TMMarketPlaceGetResource {
             json = mapper.writeValueAsString(user);
             return json;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new  TMMarketPlaceServiceException(e, e.getMessage());
         }
-        LOGGER.debug("Returning JSON from method: getUserById - " + json);
-        return json;
     }
 
     @GET
-    @Path("/companyCount")
+    @Path("/company-count")
     @Produces("application/json")
-    public String getCompanyCount(){
+    public String getCompanyCount() throws TMMarketPlaceServiceException {
         int count  = 0;
         try {
             count = baseDao.getTotalCount(Company.class);
@@ -179,15 +175,14 @@ public class TMMarketPlaceGetResource {
             LOGGER.debug("Returning count from method: getCompanyCount - " + json);
             return json;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new  TMMarketPlaceServiceException(e, e.getMessage());
         }
-        return String.valueOf(count);
     }
 
     @GET
-    @Path("/userCount")
+    @Path("/user-count")
     @Produces("application/json")
-    public String getUserCount(){
+    public String getUserCount() throws TMMarketPlaceServiceException {
         int count  = 0;
         try {
             count = baseDao.getTotalCount(User.class);
@@ -195,52 +190,49 @@ public class TMMarketPlaceGetResource {
             LOGGER.debug("Returning count from method: getUserCount - " + json);
             return mapper.writeValueAsString(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new  TMMarketPlaceServiceException(e, e.getMessage());
         }
-        return String.valueOf(count);
     }
 
     @GET
-    @Path("/whiteListedCompanies/")
+    @Path("/white-listed-companies/")
     @Produces("application/json")
-    public String getWhiteListedCompanies(){
+    public String getWhiteListedCompanies() throws TMMarketPlaceServiceException {
         List<Company> companies = companyDao.getWhiteListedCompanies();
-        HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
+        List<Integer> midList = new ArrayList<>();
         for (Company company : companies) {
-            hashMap.put(company.getMid(), company.getName());
+            midList.add(company.getMid());
         }
         try {
-            return mapper.writeValueAsString(hashMap);
+            return mapper.writeValueAsString(midList);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TMMarketPlaceServiceException(e, e.getMessage());
         }
-        return null;
     }
 
     @GET
-    @Path("/allWidgets")
+    @Path("/all-widgets")
     @Produces("application/json")
-    public String getAllWidgets(){
+    public String getAllWidgets() throws TMMarketPlaceServiceException {
         List<WidgetType> widgetTypes = EnumWidgetType.getAll();
         try {
             return mapper.writeValueAsString(widgetTypes);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new  TMMarketPlaceServiceException(e, e.getMessage());
         }
-        return null;
     }
 
     @GET
-    @Path("/widgetById/{wid}")
+    @Path("/widget-by-id/{wid}")
     @Produces("application/json")
-    public String getWidgetById(@PathParam("wid") String wid){
+    public String getWidgetById(@PathParam("wid") String wid) throws TMMarketPlaceServiceException {
         
         WidgetType widget = EnumWidgetType.getById(Integer.parseInt(wid)).asWidgetType();
         if(widget != null) {
             try {
                 return mapper.writeValueAsString(widget);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new  TMMarketPlaceServiceException(e, e.getMessage());
             }
         }
         return "";
@@ -248,9 +240,9 @@ public class TMMarketPlaceGetResource {
 
 
     @GET
-    @Path("/widgetByCompany/{mid}")
+    @Path("/widget-by-company-mid/{mid}")
     @Produces("application/json")
-    public String getWidgetForCompany(@PathParam("mid") String mid){
+    public String getWidgetForCompany(@PathParam("mid") String mid) throws TMMarketPlaceServiceException {
         
         int companyMid = Integer.parseInt(mid);
         Company company = companyDao.getCompanyByMID(companyMid);
@@ -263,16 +255,16 @@ public class TMMarketPlaceGetResource {
                 }
                 return mapper.writeValueAsString(widgetTypes);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new  TMMarketPlaceServiceException(e, e.getMessage());
             }
         }
         return "";
     }
 
     @GET
-    @Path("/companyByUserId/{uid}")
+    @Path("/company-by-user-id/{uid}")
     @Produces("application/json")
-    public String getCompanyByUserId(@PathParam("uid") String uid){
+    public String getCompanyByUserId(@PathParam("uid") String uid) throws TMMarketPlaceServiceException {
         
         int intId = Integer.parseInt(uid);
         List<Company> company = companyDao.getCompanyByUserId(intId);
@@ -281,7 +273,7 @@ public class TMMarketPlaceGetResource {
             try {
                 json = mapper.writeValueAsString(company);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new  TMMarketPlaceServiceException(e, e.getMessage());
             }
             LOGGER.debug("Returning JSON from method: getCompanyByUserId - " + json);
             return json;
@@ -291,9 +283,9 @@ public class TMMarketPlaceGetResource {
 
 
     @GET
-    @Path("/companyCategoryMap/{mid}")
+    @Path("/company-category-map/{mid}")
     @Produces("application/json")
-    public String getCompanyCategoryMapByMid(@PathParam("mid") String mid){
+    public String getCompanyCategoryMapByMid(@PathParam("mid") String mid) throws TMMarketPlaceServiceException {
         
         int intId = Integer.parseInt(mid);
         List<CompanyCategoryMap> company = companyDao.getCompanyCategoryMapByMid(intId);
@@ -302,7 +294,7 @@ public class TMMarketPlaceGetResource {
             try {
                 json = mapper.writeValueAsString(company);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new  TMMarketPlaceServiceException(e, e.getMessage());
             }
             LOGGER.debug("Returning JSON from method: getCompanyCategoryMap - " + json);
             return json;
@@ -311,9 +303,9 @@ public class TMMarketPlaceGetResource {
     }
 
     @GET
-    @Path("/allCompanyCategoryMap")
+    @Path("/all-company-category-map")
     @Produces("application/json")
-    public String getAllCompanyCategoryMap(){
+    public String getAllCompanyCategoryMap() throws TMMarketPlaceServiceException {
         try {
             List<CompanyCategoryMap> company = companyDao.getAllCompanyCategoryMap();
             if(company != null && company.size() > 0) {
@@ -322,7 +314,7 @@ public class TMMarketPlaceGetResource {
                 return json;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new  TMMarketPlaceServiceException(e, e.getMessage());
         }
         return "";
     }

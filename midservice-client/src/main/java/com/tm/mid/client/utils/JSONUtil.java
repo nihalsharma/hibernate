@@ -13,9 +13,9 @@ import java.util.List;
 /**
  * Created by Nihal on 9/19/14.
  */
-public class ClientUtil {
+public class JSONUtil {
 
-    public <T> List<T> getListFromJson(Class<T> c, String json) {
+    public <T> List<T> getListFromJson(Class<T> c, String json) throws TMMIDConversionException {
         try {
             ObjectMapper mapper = new ObjectMapper();
             List<T> myObjects = mapper.readValue(json, new TypeReference<List<T>>() {
@@ -26,7 +26,7 @@ public class ClientUtil {
         }
     }
 
-    public <T1, T2> HashMap<T1, T2> getMapFromJson(String json) {
+    public <T1, T2> HashMap<T1, T2> getMapFromJson(String json) throws TMMIDConversionException {
         try {
             ObjectMapper mapper = new ObjectMapper();
             HashMap<T1, T2> map = mapper.readValue(json, new TypeReference<HashMap<T1, T2>>() {
@@ -37,7 +37,7 @@ public class ClientUtil {
         }
     }
 
-    public <T> T getObjectFromJson(Class<T> c, String json) {
+    public <T> T getObjectFromJson(Class<T> c, String json) throws TMMIDConversionException {
         try {
             ObjectMapper mapper = new ObjectMapper();
             T object = mapper.readValue(json, c);

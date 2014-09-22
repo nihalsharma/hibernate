@@ -12,15 +12,15 @@ import java.io.InputStream;
 public class ConfigReader {
 
 
-    public static final java.lang.String DBSERVER = "DB_SERVER";
-    public static final java.lang.String DBNAME = "DB_NAME";
-    public static final java.lang.String USERNAME = "DB_USERID";
-    public static final java.lang.String PASSWORD = "DB_PASSWD";
-    public static final java.lang.String DBPORT = "DB_PORT";
+    public static final java.lang.String DBSERVER = "db.server";
+    public static final java.lang.String DBNAME = "db.name";
+    public static final java.lang.String USERNAME = "db.userid";
+    public static final java.lang.String PASSWORD = "db.password";
+    public static final java.lang.String DBPORT = "db.port";
 
     private static final String AWS_ACCESS_KEY = "aws.accessKey";
     private static final String AWS_SECRET_KEY = "aws.secretKey";
-    private static final java.lang.String AUTH_TOKEN = "AUTH_TOKEN";
+    private static final java.lang.String AUTH_TOKEN = "auth.token";
 
     private static ConfigReader instance;
     private final Configuration config;

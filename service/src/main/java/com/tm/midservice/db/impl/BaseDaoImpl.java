@@ -2,8 +2,7 @@ package com.tm.midservice.db.impl;
 
 import com.tm.midservice.db.core.HibernateUtil;
 import com.tm.midservice.db.service.BaseDao;
-import com.tm.midservice.exception.TMMIDException;
-import com.tm.midservice.utilities.TMUtils;
+import com.tm.midservice.exception.TMMarketPlaceDatabaseException;
 import org.apache.log4j.Logger;
 import org.hibernate.*;
 import org.hibernate.criterion.Projections;
@@ -68,7 +67,7 @@ public class BaseDaoImpl implements BaseDao {
             LOGGER.debug("save successful");
         } catch (RuntimeException re) {
             HibernateUtil.rollback(tx);
-            throw new TMMIDException(TMUtils.createErrorMessage(re));
+            throw new TMMarketPlaceDatabaseException(re);
         } finally {
             HibernateUtil.close(session);
         }
@@ -132,7 +131,7 @@ public class BaseDaoImpl implements BaseDao {
 
         } catch (RuntimeException re) {
             HibernateUtil.rollback(tx);
-            throw new TMMIDException(TMUtils.createErrorMessage(re));
+            throw new TMMarketPlaceDatabaseException(re);
         } finally {
             HibernateUtil.close(session);
         }
@@ -140,7 +139,6 @@ public class BaseDaoImpl implements BaseDao {
 
     protected Session startOperation() throws HibernateException {
         if(HibernateUtil.getSessionFactory().getCurrentSession() != null && HibernateUtil.getSessionFactory().getCurrentSession().isOpen()) {
-            //session = HibernateUtil.getSessionFactory().getCurrentSession();
             HibernateUtil.getSessionFactory().getCurrentSession().close();
         }
         session = HibernateUtil.getSessionFactory().openSession();
@@ -148,8 +146,8 @@ public class BaseDaoImpl implements BaseDao {
         return session;
     }
 
-    protected void handleException(HibernateException e) throws TMMIDException {
+    protected void handleException(HibernateException e) throws TMMarketPlaceDatabaseException {
         HibernateUtil.rollback(tx);
-        throw new TMMIDException(e);
+        throw new TMMarketPlaceDatabaseException(e);
     }
 }

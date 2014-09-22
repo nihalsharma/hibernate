@@ -1,24 +1,21 @@
 package com.tm.midservice.resource;
 
 import com.google.gson.Gson;
-import com.tm.midservice.utilities.Constants;
+import com.tm.midservice.exception.TMMarketPlaceDatabaseException;
 import com.tm.midservice.utilities.S3Manager;
 import com.tm.midservice.db.dto.Company;
 import com.tm.midservice.db.dto.CompanyCategoryMap;
-import com.tm.midservice.db.dto.TMWRSClient;
+import com.tm.midservice.db.dto.CompanyAttributes;
 import com.tm.midservice.db.dto.User;
 import com.tm.midservice.db.impl.BaseDaoImpl;
 import com.tm.midservice.db.impl.CompanyDaoImpl;
 import com.tm.midservice.db.service.BaseDao;
 import com.tm.midservice.db.service.CompanyDao;
-import com.tm.midservice.exception.TMMIDException;
 import org.apache.log4j.Logger;
 
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import java.util.List;
 
 /**
  * Created by Nihal on 9/14/14.
@@ -51,7 +48,7 @@ public class TMMarketPlaceCreateResource {
             }
             created = Boolean.TRUE;
         } catch (Exception e) {
-            throw new TMMIDException(e.getMessage());
+            throw new TMMarketPlaceDatabaseException(e.getMessage());
         }
         String json = gson.toJson(created);
         return json;
@@ -65,7 +62,7 @@ public class TMMarketPlaceCreateResource {
         boolean created = Boolean.FALSE;
         Gson gson = new Gson();
         try {
-            TMWRSClient client = new Gson().fromJson(tmwrsClientJson, TMWRSClient.class);
+            CompanyAttributes client = new Gson().fromJson(tmwrsClientJson, CompanyAttributes.class);
             if (client != null) {
                 Company company = companyDao.getCompanyByMID(client.getMid());
                 if (company != null) {
@@ -75,7 +72,7 @@ public class TMMarketPlaceCreateResource {
             }
             created = Boolean.TRUE;
         } catch (Exception e) {
-            throw new TMMIDException(e.getMessage());
+            throw new TMMarketPlaceDatabaseException(e.getMessage());
         }
         String json = gson.toJson(created);
         return json;
@@ -94,14 +91,14 @@ public class TMMarketPlaceCreateResource {
             }
             created = Boolean.TRUE;
         } catch (Exception e) {
-            throw new TMMIDException(e.getMessage());
+            throw new TMMarketPlaceDatabaseException(e.getMessage());
         }
         String json = gson.toJson(created);
         return json;
     }
 
     @POST
-    @Path("/companyCategoryMap")
+    @Path("/company-category-map")
     @Produces("application/json")
     public String createCompanyCategoryMap(String companyCatJson) {
         boolean created = Boolean.FALSE;
@@ -113,15 +110,15 @@ public class TMMarketPlaceCreateResource {
             }
             created = Boolean.TRUE;
         } catch (Exception e) {
-            throw new TMMIDException(e.getMessage());
+            throw new TMMarketPlaceDatabaseException(e.getMessage());
         }
         String json = gson.toJson(created);
         return json;
     }
 
 
-    @GET
-    @Path("/allCompanyCategoryMap")
+    /*@GET
+    @Path("/all-company-category-map")
     @Produces("application/json")
     public String createAllCompanyCategoryMap() {
         boolean created = Boolean.FALSE;
@@ -133,30 +130,30 @@ public class TMMarketPlaceCreateResource {
             }
             created = Boolean.TRUE;
         } catch (Exception e) {
-            throw new TMMIDException(e.getMessage());
+            throw new TMMarketPlaceDatabaseException(e.getMessage());
         }
         String json = gson.toJson(created);
         return json;
-    }
+    }*/
 
-    @GET
+    /*@GET
     @Path("/allTMWRSClient")
     @Produces("application/json")
     public String createAllTMWRSClient() {
         boolean created = Boolean.FALSE;
         Gson gson = new Gson();
-        List<TMWRSClient> companyCatMap = Constants.tmwrsClients();
+        List<CompanyAttributes> companyCatMap = Constants.tmwrsClients();
         try {
             if (companyCatMap != null) {
                 baseDao.saveAll(companyCatMap);
             }
             created = Boolean.TRUE;
         } catch (Exception e) {
-            throw new TMMIDException(e.getMessage());
+            throw new TMMarketPlaceDatabaseException(e.getMessage());
         }
         String json = gson.toJson(created);
         return json;
-    }
+    }*/
 
 
 

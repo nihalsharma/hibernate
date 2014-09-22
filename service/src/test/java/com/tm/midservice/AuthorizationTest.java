@@ -5,6 +5,7 @@ import com.tm.midservice.db.dto.Company;
 import com.tm.midservice.db.dto.User;
 //import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 //import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.joda.time.DateTime;
 import org.junit.Test;
 
 import javax.ws.rs.client.Invocation;
@@ -72,13 +73,13 @@ public class AuthorizationTest {
         company.setName("abc");
         company.setCurrency("abc");
         company.setActive(Boolean.TRUE);
-        company.setCreatedAt(new Date());
+        company.setCreatedAt(new DateTime());
         company.setMid(13001);
         company.setSearchFeatureEnabled(Boolean.TRUE);
         company.setSource("unknown");
         company.setUsersCount(10);
         company.setTierId(1);
-        company.setUpdatedAt(new Date());
+        company.setUpdatedAt(new DateTime());
 
 
         Gson gson = new Gson();
@@ -104,8 +105,8 @@ public class AuthorizationTest {
         user.setName("nihal");
         user.setEmailId("abc@abc.com");
         user.setPassword("ancewcw");
-        user.setCreatedAt(new Date());
-        user.setUpdatedAt(new Date());
+        user.setCreatedAt(new DateTime());
+        user.setUpdatedAt(new DateTime());
 
         String json1 = gson.toJson(user);
         System.out.println(json1);
@@ -139,13 +140,13 @@ public class AuthorizationTest {
         company.setName("abc123");
         company.setCurrency("abc123");
         company.setActive(Boolean.TRUE);
-        company.setCreatedAt(new Date());
+        company.setCreatedAt(new DateTime());
         company.setMid(13441);
         company.setSearchFeatureEnabled(Boolean.TRUE);
         company.setSource("unknown");
         company.setUsersCount(10);
         company.setTierId(1);
-        company.setUpdatedAt(new Date());
+        company.setUpdatedAt(new DateTime());
 
 
         Gson gson = new Gson();

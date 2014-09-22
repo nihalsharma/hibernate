@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "tmwrs_client")
-public class TMWRSClient {
+public class CompanyAttributes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
@@ -122,7 +122,7 @@ public class TMWRSClient {
 
     @Override
     public String toString() {
-        return "TMWRSClient{" +
+        return "CompanyAttributes{" +
                 "id=" + id +
                 ", urlFilterDisabled=" + urlFilterDisabled +
                 ", recFilterDisabled=" + recFilterDisabled +

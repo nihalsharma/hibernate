@@ -1,13 +1,18 @@
 package com.tm.mid.client.pojo;
 
+import com.tm.mid.client.json.CustomJsonStringToListDeserializer;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+
+import java.util.List;
+
 /**
  * Created by Nihal on 9/16/14.
  * <p/>
- * This class is the mapping class of TMWRSClient class in the MID Service. ALl the field are mapped with the same
+ * This class is the mapping class of CompanyAttributes class in the MID Service. ALl the field are mapped with the same
  * name. Any changes to the class in service should be implemented here also.
  */
 
-public class TMWRSClient {
+public class CompanyAttributes {
 
     private Integer id;
     private boolean urlFilterDisabled;
@@ -16,7 +21,10 @@ public class TMWRSClient {
     private int pprRecWidgetId;
     private int mid;
     private int tierId;
-    private String widgetFiles;
+
+    @JsonDeserialize(using = CustomJsonStringToListDeserializer.class)
+    private List<String> widgetFiles;
+
     private String productUrlPattern;
     private String referrerUrlPattern;
 
@@ -76,11 +84,11 @@ public class TMWRSClient {
         this.tierId = tierId;
     }
 
-    public String getWidgetFiles() {
+    public List<String> getWidgetFiles() {
         return widgetFiles;
     }
 
-    public void setWidgetFiles(String widgetFiles) {
+    public void setWidgetFiles(List<String> widgetFiles) {
         this.widgetFiles = widgetFiles;
     }
 
@@ -102,7 +110,7 @@ public class TMWRSClient {
 
     @Override
     public String toString() {
-        return "TMWRSClient{" +
+        return "CompanyAttributes{" +
                 "id=" + id +
                 ", urlFilterDisabled=" + urlFilterDisabled +
                 ", recFilterDisabled=" + recFilterDisabled +
@@ -121,7 +129,7 @@ public class TMWRSClient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TMWRSClient that = (TMWRSClient) o;
+        CompanyAttributes that = (CompanyAttributes) o;
 
         if (mid != that.mid) return false;
         if (!id.equals(that.id)) return false;

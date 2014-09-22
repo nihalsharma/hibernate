@@ -2,7 +2,7 @@ package com.tm.midservice.db.core;
 
 import com.ibatis.common.jdbc.ScriptRunner;
 import com.mysql.jdbc.Connection;
-import com.tm.midservice.exception.TMMIDException;
+import com.tm.midservice.exception.TMMarketPlaceDatabaseException;
 import com.tm.midservice.utilities.ConfigReader;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.log4j.Logger;
@@ -35,7 +35,7 @@ public class DataBaseManager {
         //String databaseName = stringBuilder.append(properties.getProperty(Constants.DBSERVER)).append(":").append(properties.getProperty(Constants.DBPORT)).append("/").append(properties.getProperty(Constants.DBNAME)).toString();
         this.CONNECTION = getDBConnection();
         if (this.CONNECTION == null) {
-            throw new TMMIDException();
+            throw new TMMarketPlaceDatabaseException();
         }
     }
 
@@ -78,11 +78,11 @@ public class DataBaseManager {
             sr.runScript(reader);
             retBool = true;
         } catch (FileNotFoundException e) {
-            throw new TMMIDException("FileNotFoundException occurred while running sql dump", e);
+            throw new TMMarketPlaceDatabaseException("FileNotFoundException occurred while running sql dump", e);
         } catch (SQLException e) {
-            throw new TMMIDException("SQLEXCEPTION occurred while running sql dump", e);
+            throw new TMMarketPlaceDatabaseException("SQLEXCEPTION occurred while running sql dump", e);
         } catch (IOException e) {
-            throw new TMMIDException(" IOException occurred while running sql dump", e);
+            throw new TMMarketPlaceDatabaseException(" IOException occurred while running sql dump", e);
         }
         return retBool;
     }

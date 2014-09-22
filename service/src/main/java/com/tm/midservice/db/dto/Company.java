@@ -1,8 +1,10 @@
 package com.tm.midservice.db.dto;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by Nihal on 9/10/14.
@@ -10,6 +12,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "company")
+@JsonSerialize(include= JsonSerialize.Inclusion.NON_NULL)
 public class Company implements Serializable {
 
     @Id
@@ -28,11 +31,11 @@ public class Company implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private Date createdAt;
+    private DateTime createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
-    private Date updatedAt;
+    private DateTime updatedAt;
 
     @Column(name="active")
     private boolean active;
@@ -90,19 +93,19 @@ public class Company implements Serializable {
         this.mid = mid;
     }
 
-    public Date getCreatedAt() {
+    public DateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(DateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public DateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(DateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 

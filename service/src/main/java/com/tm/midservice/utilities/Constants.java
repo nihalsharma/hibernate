@@ -3,7 +3,7 @@ package com.tm.midservice.utilities;
 
 import com.tm.midservice.db.constants.EnumWidgetType;
 import com.tm.midservice.db.dto.CompanyCategoryMap;
-import com.tm.midservice.db.dto.TMWRSClient;
+import com.tm.midservice.db.dto.CompanyAttributes;
 
 import java.awt.image.BufferedImage;
 import java.text.DateFormat;
@@ -440,11 +440,11 @@ public class Constants {
         System.out.println(BUILD_FILENAMES_SET.contains("130101/0"));
     }
 
-    public static List<TMWRSClient> tmwrsClients(){
+    public static List<CompanyAttributes> tmwrsClients(){
         Map<String, EnumSet<EnumWidgetType>> midTierMap = WIDGET_WHITELIST_MAP;
-        List<TMWRSClient> tmwrsClients = new ArrayList<>();
+        List<CompanyAttributes> companyAttributeses = new ArrayList<>();
         for (Map.Entry<String, EnumSet<EnumWidgetType>> midWidgetEntry : midTierMap.entrySet()) {
-            TMWRSClient tmwrsClient = new TMWRSClient();
+            CompanyAttributes companyAttributes = new CompanyAttributes();
             String mid = midWidgetEntry.getKey();
             int tierId, rhfWidgetId = 5, pprWidgetId = 4;
             boolean isRecFilterDisabled = false, isUrlFilterDisabled = false;
@@ -468,12 +468,12 @@ public class Constants {
                 isRecFilterDisabled = true;
             }
 
-            tmwrsClient.setTierId(tierId);
-            tmwrsClient.setMid(Integer.parseInt(mid));
-            tmwrsClient.setPprRecWidgetId(pprWidgetId);
-            tmwrsClient.setRhfRecWidgetId(rhfWidgetId);
-            tmwrsClient.setRecFilterDisabled(isRecFilterDisabled);
-            tmwrsClient.setUrlFilterDisabled(isUrlFilterDisabled);
+            companyAttributes.setTierId(tierId);
+            companyAttributes.setMid(Integer.parseInt(mid));
+            companyAttributes.setPprRecWidgetId(pprWidgetId);
+            companyAttributes.setRhfRecWidgetId(rhfWidgetId);
+            companyAttributes.setRecFilterDisabled(isRecFilterDisabled);
+            companyAttributes.setUrlFilterDisabled(isUrlFilterDisabled);
             String fileSet = "";
             for (int i = 0 ; i < 16; i ++){
                 String fileName = mid.concat("/").concat(String.valueOf(i));
@@ -486,11 +486,11 @@ public class Constants {
                     }
                 }
             }
-            tmwrsClient.setWidgetFiles(fileSet);
-            tmwrsClients.add(tmwrsClient);
+            companyAttributes.setWidgetFiles(fileSet);
+            companyAttributeses.add(companyAttributes);
 
         }
-        return tmwrsClients;
+        return companyAttributeses;
     }
 
 

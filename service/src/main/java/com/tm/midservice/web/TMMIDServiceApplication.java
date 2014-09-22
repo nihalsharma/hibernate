@@ -1,6 +1,5 @@
 package com.tm.midservice.web;
 
-import com.tm.midservice.resource.TMDBMigrateResource;
 import com.tm.midservice.resource.TMMarketPlaceCreateResource;
 import com.tm.midservice.resource.TMMarketPlaceGetResource;
 import com.tm.midservice.resource.TMMarketPlaceUpdateResource;
@@ -22,7 +21,6 @@ public class TMMIDServiceApplication extends Application {
         singletons.add(new TMMarketPlaceGetResource());
         singletons.add(new TMMarketPlaceUpdateResource());
         singletons.add(new TMMarketPlaceCreateResource());
-        singletons.add(new TMDBMigrateResource());
         singletons.add(new AuthorizationRequestFilter());
     }
 

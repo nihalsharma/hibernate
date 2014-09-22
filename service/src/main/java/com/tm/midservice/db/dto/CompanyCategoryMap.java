@@ -1,5 +1,7 @@
 package com.tm.midservice.db.dto;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "company_category_mapping")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class CompanyCategoryMap {
 
     @Id

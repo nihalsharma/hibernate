@@ -6,7 +6,7 @@ import com.tm.midservice.db.impl.BaseDaoImpl;
 import com.tm.midservice.db.impl.CompanyDaoImpl;
 import com.tm.midservice.db.service.BaseDao;
 import com.tm.midservice.db.service.CompanyDao;
-import com.tm.midservice.exception.TMMIDException;
+import com.tm.midservice.exception.TMMarketPlaceDatabaseException;
 import org.apache.log4j.Logger;
 
 import javax.ws.rs.*;
@@ -57,7 +57,7 @@ public class TMMarketPlaceUpdateResource {
             retValue = Boolean.TRUE;
         } catch (Exception e){
             LOGGER.error("Exception while WhiteListing a company");
-            throw new TMMIDException("Exception while WhiteListing a company");
+            throw new TMMarketPlaceDatabaseException("Exception while WhiteListing a company");
         }
         return gson.toJson(retValue);
     }

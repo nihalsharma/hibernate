@@ -1,8 +1,8 @@
 package com.tm.midservice.db.impl;
 
 import com.tm.midservice.db.dto.Company;
+import com.tm.midservice.db.dto.CompanyAttributes;
 import com.tm.midservice.db.dto.CompanyCategoryMap;
-import com.tm.midservice.db.dto.TMWRSClient;
 import com.tm.midservice.db.service.CompanyDao;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -66,16 +66,16 @@ public class CompanyDaoImpl extends BaseDaoImpl implements CompanyDao {
     }
 
     @Override
-    public TMWRSClient getTMWRSClientByMid(int intMid) {
-        String hql = "from TMWRSClient c where c.mid = :intMid";
+    public CompanyAttributes getCompanyAttributesByMid(int intMid) {
+        String hql = "from CompanyAttributes c where c.mid = :intMid";
         Query query = startOperation().createQuery(hql);
         query.setInteger("intMid", intMid);
-        return (TMWRSClient) query.uniqueResult();
+        return (CompanyAttributes) query.uniqueResult();
     }
 
     @Override
-    public List<TMWRSClient> getAllTMWRSClients() {
-        String hql = "from TMWRSClient c";
+    public List<CompanyAttributes> getAllCompanyAttributes() {
+        String hql = "from CompanyAttributes c";
         Query query = startOperation().createQuery(hql);
         return query.list();
     }
