@@ -13,7 +13,7 @@ public class CompanyCategoryMap {
     private int mid;
     private String catKey;
     private String catValue;
-    private int priority;
+    private Double priority;
 
     public Integer getId() {
         return id;
@@ -47,11 +47,11 @@ public class CompanyCategoryMap {
         this.catValue = catValue;
     }
 
-    public int getPriority() {
+    public Double getPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(Double priority) {
         this.priority = priority;
     }
 
@@ -74,7 +74,7 @@ public class CompanyCategoryMap {
         CompanyCategoryMap that = (CompanyCategoryMap) o;
 
         if (mid != that.mid) return false;
-        if (priority != that.priority) return false;
+        if (!priority.equals(that.priority)) return false;
         if (!catKey.equals(that.catKey)) return false;
         if (!catValue.equals(that.catValue)) return false;
         if (!id.equals(that.id)) return false;
