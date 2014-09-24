@@ -7,7 +7,7 @@ public class WidgetType {
 
     private Integer id;
     private String name;
-    private int tierId;
+    private int tier;
 
     public Integer getId() {
         return this.id;
@@ -26,11 +26,11 @@ public class WidgetType {
     }
 
     public int getTier() {
-        return tierId;
+        return tier;
     }
 
-    public void setTier(int tierId) {
-        this.tierId = tierId;
+    public void setTier(int tier) {
+        this.tier = tier;
     }
 
     @Override
