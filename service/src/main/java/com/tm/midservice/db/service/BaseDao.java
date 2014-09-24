@@ -15,15 +15,15 @@ public interface BaseDao {
 
     //public void update(Object entity);
 
-    public void save(Object entity);
+    public <T> void save(Object entity);
 
-    public void delete(Object entity);
+    public <T> void delete(Object entity);
 
-    public void deleteAll(Collection entities);
+    public <T> void deleteAll(Collection entities);
 
-    public void saveAll(Collection entities);
+    public <T> void saveAll(Collection entities);
 
-    public int getTotalCount(Class aClass);
+    public <T> int getTotalCount(Class aClass);
 
-    public void update(Object entity);
+    public <T> void update(Object entity);
 }

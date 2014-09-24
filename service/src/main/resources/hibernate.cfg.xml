@@ -6,10 +6,15 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection settings -->
+        <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
+        <!--<property name="connection.url">jdbc:mysql://aa1x98pqwgz8cp3.ct8rjljyzync.us-east-1.rds.amazonaws.com:3306/tmmarketplacedb</property>-->
+        <!--<property name="connection.username">tmdb</property>-->
+        <!--<property name="connection.password">Develop666!</property>-->
+
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://aa1x98pqwgz8cp3.ct8rjljyzync.us-east-1.rds.amazonaws.com:3306/tmmarketplacedb</property>
-        <property name="connection.username">tmdb</property>
-        <property name="connection.password">Develop666!</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/tmdb</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>
 
 
         <property name="connection.pool_size">10</property>

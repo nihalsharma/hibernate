@@ -46,11 +46,11 @@ CREATE INDEX `fk_widget_tier_idx` ON `mydb`.`widget` (`tier_id` ASC);
 USE `tmdb` ;
 
 -- -----------------------------------------------------
--- Table `tmdb`.`company`
+-- Table `tmdb`.`companyAttributes`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `tmdb`.`company` ;
+DROP TABLE IF EXISTS `tmdb`.`companyAttributes` ;
 
-CREATE TABLE IF NOT EXISTS `tmdb`.`company` (
+CREATE TABLE IF NOT EXISTS `tmdb`.`companyAttributes` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL,
   `users_count` INT(11) NULL DEFAULT '0',
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `tmdb`.`company` (
   DEFAULT CHARACTER SET = utf8
   COLLATE = utf8_unicode_ci;
 
-CREATE INDEX `fk_company_tier1_idx` ON `tmdb`.`company` (`tier_id` ASC);
+CREATE INDEX `fk_company_tier1_idx` ON `tmdb`.`companyAttributes` (`tier_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `tmdb`.`company_has_user` (
   PRIMARY KEY (`company_id`, `user_id`),
   CONSTRAINT `company_has_user_ibfk_1`
   FOREIGN KEY (`company_id`)
-  REFERENCES `tmdb`.`company` (`id`),
+  REFERENCES `tmdb`.`companyAttributes` (`id`),
   CONSTRAINT `company_has_user_ibfk_2`
   FOREIGN KEY (`user_id`)
   REFERENCES `tmdb`.`user` (`id`))

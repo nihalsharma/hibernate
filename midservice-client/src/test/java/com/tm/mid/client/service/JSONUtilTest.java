@@ -3,6 +3,7 @@ package com.tm.mid.client.service;
 import com.tm.mid.client.exception.TMMIDConversionException;
 import com.tm.mid.client.exception.TMMIDServiceInaccessible;
 import com.tm.mid.client.pojo.Company;
+import com.tm.mid.client.pojo.CompanyAttributes;
 import com.tm.mid.client.pojo.CompanyCategoryMap;
 import com.tm.mid.client.utils.JSONUtil;
 import junit.framework.Assert;
@@ -26,8 +27,8 @@ public class JSONUtilTest {
     @Test
     public void getCompanyByMid() throws TMMIDConversionException, TMMIDServiceInaccessible {
         MarketPlaceInfoClient getterService = new MarketPlaceInfoClientImpl("http://localhost:8081/api/");
-        Company company = getterService.getCompanyByMid(3);
-        org.junit.Assert.assertEquals(company.getMid().intValue(), 3);
+        CompanyAttributes company = getterService.getCompanyAttributesByMid(3);
+        org.junit.Assert.assertEquals(company.getMid(), 3);
     }
 
     @Test
