@@ -79,14 +79,14 @@ public class MarketPlaceInfoClientImpl implements MarketPlaceInfoClient {
 
     @Override
     public WidgetType getWidgetById(int wid) throws TMMIDServiceInaccessible, TMMIDConversionException {
-        String result = WebUtil.getResponseString(baseUrl + "get/widget-by-id" + wid, this.client);
+        String result = WebUtil.getResponseString(baseUrl + "get/widget-by-id/" + wid, this.client);
         WidgetType widgetType = jsonUtil.getObjectFromJson(WidgetType.class, result);
         return widgetType;
     }
 
     @Override
     public List<WidgetType> getWidgetsForCompany(int mid) throws TMMIDServiceInaccessible, TMMIDConversionException {
-        String result = WebUtil.getResponseString(baseUrl + "get/widget-by-company-mid" + mid, this.client);
+        String result = WebUtil.getResponseString(baseUrl + "get/widget-by-company-mid/" + mid, this.client);
         List<WidgetType> widgets = jsonUtil.getListFromJson(WidgetType.class, result);
         return widgets;
     }
@@ -94,14 +94,14 @@ public class MarketPlaceInfoClientImpl implements MarketPlaceInfoClient {
 
     @Override
     public List<Company> getCompanyListByUserId(int uid) throws TMMIDServiceInaccessible, TMMIDConversionException {
-        String result = WebUtil.getResponseString(baseUrl + "get/company-by-user-id" + uid, this.client);
+        String result = WebUtil.getResponseString(baseUrl + "get/company-by-user-id/" + uid, this.client);
         List<Company> companies = jsonUtil.getListFromJson(Company.class, result);
         return companies;
     }
 
     @Override
     public List<CompanyCategoryMap> getCompanyCategoryMapMid(int mid) throws TMMIDServiceInaccessible, TMMIDConversionException {
-        String result = WebUtil.getResponseString(baseUrl + "get/company-category-map" + mid, this.client);
+        String result = WebUtil.getResponseString(baseUrl + "get/company-category-map/" + mid, this.client);
         List<CompanyCategoryMap> categoryMapList = jsonUtil.getListFromJson(CompanyCategoryMap.class, result);
         return categoryMapList;
     }
