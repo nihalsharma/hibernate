@@ -46,24 +46,6 @@ public class JSONUtilTest {
         System.out.println(company.size());
     }
 
-    //Generic Object conversion Test
-
-    @Test(expected = TMMIDConversionException.class)
-    public void convertCompanyWithException() throws TMMIDConversionException {
-        CompanyCategoryMap actual = jsonUtil.getObjectFromJson(CompanyCategoryMap.class, "{\"id\":6,\"name\":\"abc\",\"usersCount\":10,\"mid\":3,\"createdAt\":\"2014-09-15 19:02 PM IST\",\"updatedAt\":\"2014-09-15 19:02 PM IST\",\"active\":true,\"searchFeatureEnabled\":true,\"analyticsFeatureEnabled\":false,\"currency\":\"abc\",\"domain\":null,\"source\":\"unknown\",\"sourceDomain\":null,\"tierId\":1}");
-//        CompanyCategoryMap expected = new CompanyCategoryMap(6, "abc", 10, 3, );
-        // Assert.assertEquals(actual, expected);
-    }
-
-    @Test
-    public void convertCompanyWithActualJson() throws TMMIDConversionException {
-        Company company = jsonUtil.getObjectFromJson(Company.class, "{\"id\":6,\"name\":\"abc\",\"usersCount\":10,\"mid\":3,\"createdAt\":\"2014-09-15 19:02 PM IST\",\"updatedAt\":\"2014-09-15 19:02 PM IST\",\"active\":true,\"searchFeatureEnabled\":true,\"analyticsFeatureEnabled\":false,\"currency\":\"abc\",\"domain\":null,\"source\":\"unknown\",\"sourceDomain\":null,\"tierId\":1}");
-    }
-
-    @Test(expected = TMMIDConversionException.class)
-    public void convertCompanyWithWrongJson() throws TMMIDConversionException {
-        Company company = jsonUtil.getObjectFromJson(Company.class, "{\"id\":6,\"name\":\"abc\",\"usersCount\":10,\"mid\":3,\"createdAt\":\"2014-09-15 19:02 PM IST\",\"updatedAt\":\"2014-09-15 19:02 PM IST\",\"active\":true,\"searchFeatureEnabled\":true,\"analyticsFeatureEnabled\":false,\"currency\":\"abc\",\"domain\":null,\"source\":\"unknown\",\"sourceDomain\":null,\"tierId\":1}");
-    }
-
+    
 
 }

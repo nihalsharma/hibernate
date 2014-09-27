@@ -13,7 +13,7 @@
     <artifactId>client</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>MarketPlaceId Service Java Client</name>
+    <name>Service Java Client</name>
 
     <dependencies>
         <dependency>

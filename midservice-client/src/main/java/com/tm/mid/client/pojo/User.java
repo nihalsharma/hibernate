@@ -7,7 +7,7 @@ import java.util.Date;
 
 
 /**
- * Created by BigP on 9/16/14.
+ * Created by Nihal on 9/16/14.
  */
 public class User {
 

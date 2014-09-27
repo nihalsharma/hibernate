@@ -1,7 +1,7 @@
 package com.tm.mid.client.pojo;
 
 /**
- * Created by BigP on 9/16/14.
+ * Created by Nihal on 9/16/14.
  */
 public class WidgetType {
 

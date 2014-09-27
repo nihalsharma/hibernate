@@ -11,7 +11,7 @@ import java.util.Date;
  * <p/>
  * <p/>
  * <p/>
- * This class is the mapping class of Company class in the MID Service. ALl the field are mapped with the same
+ * This class is the mapping class of Company class in the database Service. ALl the field are mapped with the same
  * name. Any changes to the class in service should be implemented here also.
  */
 public class Company implements Serializable {

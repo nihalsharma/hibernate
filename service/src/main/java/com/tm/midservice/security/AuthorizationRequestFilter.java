@@ -22,9 +22,9 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter {
         String header = requestContext.getHeaderString("tmauthorize");
         try {
             if (securityContext == null || header == null || header == "" || (header != null && !header.equals(ConfigReader.getInstance().getAuthToken()))) {
-                /*requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
+                requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
                         .entity("User cannot access the resource.")
-                        .build());*/
+                        .build());
             }
         } catch (ConfigurationException e) {
             e.printStackTrace();

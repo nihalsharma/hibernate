@@ -4,7 +4,7 @@ package com.tm.mid.client.pojo;
 /**
  * Created by Nihal on 9/16/14.
  * <p/>
- * This class is the mapping class of CompanyCategoryMap class in the MID Service. ALl the field are mapped
+ * This class is the mapping class of CompanyCategoryMap class in the database Service. ALl the field are mapped
  * with the same name. Any changes to the class in service should be implemented here also.
  */
 public class CompanyCategoryMap {

@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by BigP on 9/17/14.
+ * Created by Nihal on 9/17/14.
  */
 public class S3Manager {
 

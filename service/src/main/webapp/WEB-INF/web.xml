@@ -5,7 +5,7 @@
          version="3.1">
 
 
-    <display-name>TM-MarketplaceId-Service</display-name>
+    <display-name>Database-Service</display-name>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

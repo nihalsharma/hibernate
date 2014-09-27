@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>midservice-client</module>
+        <module>dbservice-client</module>
         <module>service</module>
     </modules>
 

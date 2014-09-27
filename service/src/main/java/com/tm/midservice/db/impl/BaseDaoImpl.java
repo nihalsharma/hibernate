@@ -13,6 +13,8 @@ import java.util.List;
 
 /**
  * Created by Nihal on 9/10/14.
+ * 
+ * This class contains the generic crud operation code for all the dtos
  */
 public class BaseDaoImpl implements BaseDao {
     //TODO
@@ -21,6 +23,7 @@ public class BaseDaoImpl implements BaseDao {
     private Session session;
     private Transaction tx;
 
+    
     @Override
     public <T> T get(final Class<T> c, final Serializable key) {
         SessionOperationCallback<T> execution = new SessionOperationCallback<T>() {
@@ -179,6 +182,9 @@ public class BaseDaoImpl implements BaseDao {
 
     }
 
+    /**
+     * Call Back Implemented to get a session and then close it after the operation is completed
+     */
     protected <T> void executeOperation(SessionOperationCallback<T> sqlCommand) throws HibernateException {
         if (HibernateUtil.getSessionFactory().getCurrentSession() != null && HibernateUtil.getSessionFactory().getCurrentSession().isOpen()) {
             HibernateUtil.getSessionFactory().getCurrentSession().close();
